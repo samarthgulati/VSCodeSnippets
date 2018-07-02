@@ -1,0 +1,137 @@
+{
+	"Web_Component": {
+		"prefix": "wc",
+		"body": [
+			"const template = document.createElement('template')",
+			"template.innerHTML = `",
+			"<style>",
+			":host {",
+			"  display: inline-block;",
+			"}",
+			"</style>",
+			"$3",
+			"`",
+			"export default class ${1:CustomElement} extends HTMLElement {",
+			"  static get is() {",
+			"    return '${2:custom-element}'",
+			"  }",
+			"  constructor() {",
+			"    super()",
+			"    this.attachShadow({mode: 'open'})",
+			"    this.shadowRoot.appendChild(template.content.cloneNode(true))",
+			"    $4",
+			"  }",
+			"  connectedCallback() {",
+			"    $5",
+			"  }",
+			"}"
+		],
+		"description": "Web component v1 es modules"
+	},
+	"Web_Component_Page": {
+		"prefix": "wcp",
+		"body": [
+			"const ${1:customElement}Template = document.createElement('template')",
+			"${1:customElement}Template.innerHTML = `",
+			"<style>",
+			":host {",
+			"  display: inline-block;",
+			"}",
+			"</style>",
+			"$4",
+			"`",
+			"class ${2:CustomElement} extends HTMLElement {",
+			"  static get is() {",
+			"    return '${3:custom-element}'",
+			"  }",
+			"  constructor() {",
+			"    super()",
+			"    this.attachShadow({mode: 'open'})",
+			"    this.shadowRoot.appendChild(${1:customElement}Template.content.cloneNode(true))",
+			"    $5",
+			"  }",
+			"  connectedCallback() {",
+			"    $6",
+			"  }",
+			"}",
+			"window.customElements.define(${2:CustomElement}.is, ${2:CustomElement})"
+		],
+		"description": "Web component v1 es modules"
+	},
+	"Get_Observed_Attr": {
+		"prefix": "goa",
+		"body": [
+			"static get observedAttributes() {",
+			"  return ['${1:value}']",
+			"}",
+			"attributeChangedCallback(name, oldValue, newValue) {",
+			"  switch(name) {",
+			"    case '${1:value}':",
+			"    break",
+			"  }",
+			"}"
+		],
+		"description": "observedAttributes"
+	},
+	"Attribute_Changed_Callback": {
+		"prefix": "acc",
+		"body": [
+			"attributeChangedCallback(name, oldValue, newValue) {",
+			"  $1",
+			"}"
+		],
+		"description": "attributeChangedCallback"
+	},
+	"Initialize_Observed_Attributes": {
+		"prefix": "ioa",
+		"body": [
+			"${1:CustomElement}.observedAttributes.forEach(attr => {",
+			"  if(this.hasAttribute(attr))",
+			"    this.attributeChangedCallback(attr, null, this.getAttribute(attr))",
+			"})"
+		],
+		"description": "initialize observed attributes"
+	},
+	"Shadow_Selector": {
+		"prefix": "tsq",
+		"body": "this.shadowRoot.querySelector('$1')",
+		"description": "Shadowroot querySelector"
+	},
+	"Shadow_Selector_All": {
+		"prefix": "tsqa",
+		"body": "this.shadowRoot.querySelectorAll('$1')",
+		"description": "Shadowroot querySelectorAll"
+	},
+	"ImportWC": {
+		"prefix": "iwc",
+		"body": [
+			"import ${2:moduleName} from '${1:module}'",
+			"customElements.define(${2:moduleName}.is, ${2:moduleName})"
+		],
+		"description": "Imports entire module statement in ES6 syntax"
+	},
+	"Dispatch_CustomEvent": {
+		"prefix": "tdce",
+		"body": [
+			"this.dispatchEvent(new CustomEvent('${1:event-name}', {",
+			"  bubbles: true,",
+			"  composed: true,",
+			"  detail: ${2:undefined}",
+			"}))",
+		],
+		"description": "dispatch custom event from shadow dom"
+	},
+	"Document_Create_Element": {
+		"prefix": "dce",
+		"body": "document.createElement('$1')",
+		"description": "document.createElement"
+	},
+	"Add_Event_Listener": {
+		"prefix": "tael",
+		"body": [
+			"this.${3:eventHandler} = this.${3:eventHandler}.bind(this)",
+			"this.${1:element}.addEventListener('${2:event}', this.${3:eventHandler})"
+		],
+		"description": "document.createElement"
+	},
+}
